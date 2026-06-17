@@ -1,0 +1,24 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+
+# Terraform plan files
+*.plan
+
+# Crash logs
+crash.log
+
+# Sensitive files
+secrets.tfvars
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains
+.idea/
