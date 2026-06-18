@@ -14,3 +14,14 @@ module "vpc" {
   az_a = "eu-central-1a"
   az_b = "eu-central-1b"
 }
+
+module "eks" {
+  source = "../../modules/eks"
+
+  cluster_name    = "petclinic-prod"
+  cluster_version = "1.33"
+
+  vpc_id = module.vpc.vpc_id
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+}
