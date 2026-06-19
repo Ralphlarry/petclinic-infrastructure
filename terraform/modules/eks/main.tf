@@ -10,6 +10,10 @@ module "eks" {
 
   enable_irsa = true
 
+  authentication_mode = "API_AND_CONFIG_MAP"
+
+  enable_cluster_creator_admin_permissions = true
+
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnet_ids
 
