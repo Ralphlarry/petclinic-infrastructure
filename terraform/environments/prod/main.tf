@@ -46,3 +46,18 @@ module "ecr" {
     "petclinic-admin-server"
   ]
 }
+
+data "aws_caller_identity" "current" {}
+
+module "github_actions" {
+  source = "../../modules/github-actions"
+
+  github_owner = "Ralphlarry"
+
+  github_repo = "spring-petclinic-microservices"
+
+  aws_region = var.aws_region
+
+  account_id = data.aws_caller_identity.current.account_id
+}
+
