@@ -32,3 +32,17 @@ module "iam" {
   oidc_provider_arn = module.eks.oidc_provider_arn
   oidc_provider_url = module.eks.oidc_provider_url
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  repository_names = [
+    "config-server",
+    "discovery-server",
+    "customers-service",
+    "visits-service",
+    "vets-service",
+    "api-gateway",
+    "admin-server"
+  ]
+}
