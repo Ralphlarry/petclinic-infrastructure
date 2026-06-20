@@ -37,12 +37,12 @@ module "ecr" {
   source = "../../modules/ecr"
 
   repository_names = [
-    "config-server",
-    "discovery-server",
-    "customers-service",
-    "visits-service",
-    "vets-service",
-    "api-gateway",
-    "admin-server"
+    "petclinic-config-server",
+    "petclinic-discovery-server",
+    "petclinic-customers-service",
+    "petclinic-visits-service",
+    "petclinic-vets-service",
+    "petclinic-api-gateway",
+    "petclinic-admin-server"
   ]
 }
