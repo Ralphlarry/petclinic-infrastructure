@@ -48,7 +48,7 @@ resource "aws_iam_role_policy_attachment" "ecr" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
 }
 
-resource "aws_iam_role_policy_attachment" "eks" {
-  role       = aws_iam_role.github_actions.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-}
+# REMOVED: AmazonEKSClusterPolicy. That AWS-managed policy is for the EKS
+# control-plane service role and grants the CI principal nothing useful for
+# kubectl (in-cluster access is governed by EKS access entries / aws-auth).
+# Under the Argo CD model, CI doesn't touch the cluster at all (ECR push only).
