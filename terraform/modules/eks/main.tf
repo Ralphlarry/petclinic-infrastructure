@@ -17,6 +17,11 @@ module "eks" {
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnet_ids
 
+  # Tag the node security group so Karpenter's EC2NodeClass can discover it.
+  node_security_group_tags = {
+    "karpenter.sh/discovery" = var.cluster_name
+  }
+
   addons = {
     vpc-cni = {
       before_compute = true

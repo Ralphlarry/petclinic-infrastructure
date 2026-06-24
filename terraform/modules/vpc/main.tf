@@ -57,6 +57,9 @@ resource "aws_subnet" "private_a" {
     "kubernetes.io/role/internal-elb" = "1"
 
     "kubernetes.io/cluster/petclinic-prod" = "shared"
+
+    # Karpenter discovers subnets to launch nodes in by this tag:
+    "karpenter.sh/discovery" = var.vpc_name
   }
 }
 
@@ -71,6 +74,9 @@ resource "aws_subnet" "private_b" {
     "kubernetes.io/role/internal-elb" = "1"
 
     "kubernetes.io/cluster/petclinic-prod" = "shared"
+
+    # Karpenter discovers subnets to launch nodes in by this tag:
+    "karpenter.sh/discovery" = var.vpc_name
   }
 }
 
