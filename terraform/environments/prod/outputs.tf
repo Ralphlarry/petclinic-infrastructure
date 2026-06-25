@@ -21,3 +21,12 @@ output "cluster_endpoint" {
 output "oidc_provider_arn" {
   value = module.eks.oidc_provider_arn
 }
+
+output "aws_region" {
+  value = var.aws_region
+}
+
+output "alb_controller_role_arn" {
+  description = "IRSA role ARN for the AWS Load Balancer Controller (used by the addons bootstrap)."
+  value       = module.iam.alb_controller_role_arn
+}
