@@ -1,8 +1,8 @@
 # petclinic-infrastructure
 
-Infrastructure as Code for the [Spring PetClinic on AWS EKS](https://petclinic.ralphnetwork.online) solo project — a production-style GitOps platform built around a 7-service Java microservices application.
+Infrastructure as Code for the Spring PetClinic on AWS EKS solo project — a production-style GitOps platform built around a 7-service Java microservices application.
 
-**Live app:** https://petclinic.ralphnetwork.online &nbsp;|&nbsp; **Full write-up:** [CASE-STUDY.md](../CASE-STUDY.md)
+**Demo:** the cluster is shut down between runs to save AWS costs. `make up` rebuilds the whole environment.
 
 | Repo | Purpose |
 |------|---------|
