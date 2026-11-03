@@ -2,7 +2,7 @@
 
 Infrastructure as Code for the Spring PetClinic on AWS EKS solo project — a production-style GitOps platform built around a 7-service Java microservices application.
 
-**Demo:** the cluster is shut down between runs to save AWS costs. `make up` rebuilds the whole environment.
+**Demo:** the cluster is shut down between runs to save AWS costs. `make up` runs Terraform and installs the add-ons and Argo CD. CI then fills ECR, the new ALB needs a DNS update, and Prometheus, Grafana and Zipkin are applied separately.
 
 | Repo | Purpose |
 |------|---------|
@@ -125,11 +125,11 @@ make down
 
 **GitOps over `kubectl apply` in CI.** GitHub Actions builds images and bumps the Helm chart's image tag in Git. Argo CD does the rest. CI never holds cluster credentials — the desired state is auditable and revertible via git history.
 
-**Karpenter over cluster-autoscaler.** Faster bin-packing, instance-type flexibility, and the modern EKS approach. I verified it under real load — pending pods from HPA scaling triggered a `t3a.medium` provision in ~90 seconds.
+**Karpenter over cluster-autoscaler.** Faster bin-packing, instance-type flexibility, and the modern EKS approach. When a scale-up left pods Pending, it provisioned a `t3a.medium` in ~90 seconds.
 
 **OIDC over static AWS keys.** The GitHub Actions IAM role uses an OIDC trust policy. No `AWS_ACCESS_KEY_ID` anywhere — not in secrets, not in CI environment variables.
 
-**Reproducible teardown.** A platform you can't rebuild cleanly isn't IaC — it's a pet. `make down` encodes the teardown ordering so the environment can be destroyed for cost and rebuilt for a demo without leaving orphaned resources.
+**Reproducible teardown.** A platform you can't rebuild cleanly isn't IaC — it's a pet. `make down` encodes the teardown ordering so the environment can be destroyed for cost without leaving orphaned resources.
 
 ---
 
